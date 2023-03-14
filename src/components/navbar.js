@@ -3,7 +3,7 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from '@chakra-ui/icons';
 import { Link } from "react-router-dom";
-import { FaCartPlus } from "react-icons/fa";
+import { FaCartPlus, FaStore, FaStoreAltSlash } from "react-icons/fa";
 import { useSelector } from "react-redux";
 
 
@@ -81,7 +81,11 @@ function Navbar() {
                         </PopoverContent>
                     </Portal>
                 </Popover>
-
+                    <Link to='/toko'>
+                        <Button leftIcon={<FaStore/>} colorScheme={'green'} variant='outline'>
+                            Toko
+                        </Button>
+                    </Link>
                     <Avatar size={'sm'} src='https://bit.ly/broken-link' />
                 </HStack>
             </Flex>

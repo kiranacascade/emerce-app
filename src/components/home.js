@@ -1,17 +1,46 @@
+import axios from "axios";
 import { Box, Image, VStack, Button, CardBody, Stack, Heading, Text, Card, Wrap
  } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
-import { products } from "./Cart/products";
+// import { products } from "./Cart/products";
 import { addProduct } from "../features/productSlice";
+import { useState, useEffect} from "react";
+import productList from "./products.json";
+
 
 
 function Home() {
+    // const axios = require('axios')
+
+    // axios.get("http://localhost:2000/products")
+    // .then((response) => {
+    //     console.log(response)
+    // })
+    // .catch((err) => {
+    //     console.error(err);
+    // })
+
     const dispatch = useDispatch();
+
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:2000/products")
+        .then(res => {
+            console.log(res.data);
+            setProducts(res.data);
+        })
+        .catch(err => {
+            console.error(err)
+            setProducts(productList.products);
+        })
+    }, [])
+
+    console.log(products)
 
     const homeComponent = {
         imageURL: "https://images.tokopedia.net/img/cache/1208/NsjrJu/2023/3/11/52323936-825a-421d-93ff-ca0fb92d04cf.jpg.webp?ect=4g"
     };
-
 
     const productsCard = products.map((product) => {
         return (
