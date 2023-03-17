@@ -6,23 +6,16 @@ import { useDispatch } from "react-redux";
 import { addProduct } from "../features/productSlice";
 import { useState, useEffect} from "react";
 import productList from "./products.json";
-
+import { useSelector } from "react-redux";
 
 
 function Home() {
-    // const axios = require('axios')
-
-    // axios.get("http://localhost:2000/products")
-    // .then((response) => {
-    //     console.log(response)
-    // })
-    // .catch((err) => {
-    //     console.error(err);
-    // })
 
     const dispatch = useDispatch();
 
     const [products, setProducts] = useState([]);
+
+    const loginData = useSelector((state) => state.user);
 
     useEffect(() => {
         axios.get("http://localhost:2000/products")
@@ -43,6 +36,16 @@ function Home() {
     };
 
     const productsCard = products.map((product) => {
+        const addToCartButton = () => {
+            if (loginData.status === 'success') {
+                return (
+                    <Button onClick={() => dispatch(addProduct(product))} variant='solid' colorScheme='green' pos={'static'}>
+                        Beli
+                    </Button>
+                )
+            }
+        }
+
         return (
             <Card pos={'static'} maxW='xs'>
                 <CardBody mb={0}>
@@ -50,11 +53,9 @@ function Home() {
                     <Stack mt='6' spacing='3'>
                         <Heading size='md'>{product.name}</Heading>
                         <Text as={'b'} color='green' fontSize='lg'>
-                            {product.price.toLocaleString("id-ID", {style:"currency", currency:"IDR"})}
+                           Rp {product.price.toLocaleString("id-ID")}
                         </Text>
-                        <Button onClick={() => dispatch(addProduct(product))} variant='solid' colorScheme='green' pos={'static'}>
-                        Beli
-                        </Button>
+                        {addToCartButton()}
                     </Stack>
                 </CardBody>
             </Card>

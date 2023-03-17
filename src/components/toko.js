@@ -3,9 +3,11 @@ import { Button, FormErrorMessage, FormControl, FormLabel, Input, Container, Hea
 import axios from "axios";
 import { Formik, Form, Field } from "formik";
 import * as Yup from "yup"
+import { useNavigate } from "react-router-dom";
+import Home from "./home";
 
 function Toko() {
-
+    const navigate = useNavigate();
     const addProductSchema = Yup.object().shape({
         name: Yup.string()
             .min(4, "Product name must be 4 characters at minimum")
@@ -34,7 +36,7 @@ function Toko() {
                     .catch((err) => {
                         console.error(err)
                     })
-
+                navigate('/')
             }}
             >
                 {(props) => {
@@ -75,6 +77,7 @@ function Toko() {
                                     mt={4}
                                     colorScheme='green'
                                     type='submit'
+                                    
                                 >
                                     Submit
                                 </Button>

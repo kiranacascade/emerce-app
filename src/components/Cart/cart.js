@@ -1,6 +1,6 @@
 import { Box, HStack } from "@chakra-ui/react";
 import CartItemsList from "./cartlist";
-import ShoppingSummary from "./summary";
+import ShoppingSummary from "./summary"; 
 
 
 function Cart() {

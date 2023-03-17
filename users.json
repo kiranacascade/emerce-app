@@ -1,0 +1,22 @@
+{
+    "users": [
+        {
+            "id": 1,
+            "name": "Kirana Cascade",
+            "email": "kiranacascade@gmail.com",
+            "password": "Rara123$"
+        },
+        {
+            "id": 2,
+            "name": "Conan Gray",
+            "email": "conangray@gmail.com",
+            "password": "Gray?000"
+        },
+        {
+            "id": 3,
+            "name": "Admin",
+            "email": "admin@gmail.com",
+            "password": "#1Admin"
+        }
+    ]
+}
